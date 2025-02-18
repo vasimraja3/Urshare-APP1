@@ -1,21 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title> Embedded Content </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embedded Content</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-<a href="https://script.google.com/macros/s/AKfycbwRlgGC4Ru9_-dMkALOsdgX92kfhCU2TJYCNH5Sw63C8QY5G-yNvKrcRQft2IBbSPN3/exec" target="_blank">
-  Open Web App
-</a>
 
-<script>
-window.onload = function() {
-document.querySelector('iframe').requestFullscreen().catch((err) => {
-console.error('Error attempting to enable Full-screen mode: ${err.message}');
+  <!-- Corrected iframe -->
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbwRlgGC4Ru9_-dMkALOsdgX92kfhCU2TJYCNH5Sw63C8QY5G-yNvKrcRQft2IBbSPN3/exec" 
+    allowfullscreen="true">
+  </iframe>
 
-});
-};
-</script>
+  <!-- Fullscreen Button -->
+  <button onclick="goFullScreen()">Go Fullscreen</button>
+
+  <script>
+    function goFullScreen() {
+      const iframe = document.querySelector('iframe');
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen().catch(err => {
+          console.error(`Error attempting fullscreen mode: ${err.message}`);
+        });
+      } else {
+        alert("Fullscreen is not supported in this browser.");
+      }
+    }
+  </script>
+
 </body>
 </html>
- 
