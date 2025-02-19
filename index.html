@@ -3,41 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embedded Content</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-    iframe {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
+  <title>Fetch Data from Google Apps Script</title>
 </head>
 <body>
 
-  <!-- Corrected iframe -->
-  <iframe 
-    src="https://script.google.com/macros/s/AKfycbwttEpGv0Qk_VGUR9XN97oSxMzbD__EoQvhflglqVZJtRCfNxciyldbPtxHZFEaFkRhOQ/exec" 
-    allowfullscreen>
-  </iframe>
+  <h2>Google Apps Script Data</h2>
+  <div id="data-container">Loading...</div>
 
   <script>
-    window.onload = function() {
-      const iframe = document.querySelector('iframe');
-      if (iframe.requestFullscreen) {
-        iframe.requestFullscreen().catch(err => {
-          console.error(`Error attempting to enable full-screen mode: ${err.message}`);
-        });
-      }
-    };
+    fetch("https://script.google.com/macros/s/AKfycbwttEpGv0Qk_VGUR9XN97oSxMzbD__EoQvhflglqVZJtRCfNxciyldbPtxHZFEaFkRhOQ/exec")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("data-container").innerHTML = data;
+      })
+      .catch(error => console.error("Error fetching data:", error));
   </script>
 
 </body>
